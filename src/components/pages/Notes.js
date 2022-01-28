@@ -1,5 +1,6 @@
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { useEffect, useState } from 'react';
+import DisplayNotes from '../DisplayNotesMap';
 
 import { AddNoteForm } from './Inputs';
 
@@ -19,9 +20,7 @@ const Notes = () => {
   return (
     <Container>
       <AddNoteForm setNotes={setNotes} />
-      {Notes.map(({ id, Note }) => {
-        return <p key={id}>{Note}</p>;
-      })}
+      <DisplayNotes Notes={Notes} setNotes={setNotes} />
     </Container>
   );
 };

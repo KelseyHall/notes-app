@@ -6,9 +6,17 @@ export const AddNoteForm = ({ setNotes }) => {
     <form onSubmit={(e) => addNewNote(e, setNotes)}>
       <TextField
         id="standard-basic"
-        name="addNoteForm"
+        name="addNoteTitleForm"
         variant="filled"
         size="small"
+        label="Title"
+      />
+      <TextField
+        id="standard-basic"
+        name="addNoteBodyForm"
+        variant="filled"
+        size="small"
+        label="body"
       />
       <Button type="submit">Add Note</Button>
     </form>

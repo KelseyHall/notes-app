@@ -2,11 +2,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const addNewNote = (e, setNote) => {
   e.preventDefault();
-  const Note = e.target.elements.addNoteForm.value.trim();
+  const TitleNote = e.target.elements.addNoteTitleForm.value.trim();
+  const BodyNote = e.target.elements.addNoteBodyForm.value.trim();
 
-  if (Note.length > 0) {
-    setNote((savedNotes) => [...savedNotes, { id: uuidv4(), Note }]);
-    e.target.elements.addNoteForm.value = '';
+  if (TitleNote.length > 0) {
+    setNote((savedNotes) => [
+      ...savedNotes,
+      { id: uuidv4(), Note: { title: TitleNote, body: BodyNote } },
+    ]);
+    e.target.elements.addNoteTitleForm.value = '';
+    e.target.elements.addNoteBodyForm.value = '';
   } else {
     console.log('error');
   }

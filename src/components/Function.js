@@ -16,6 +16,9 @@ export const addNewNote = (e, setNote) => {
     console.log('error');
   }
 };
+export const EditNote = (e) => {
+  console.log(e);
+};
 
 export const DeleteNote = (id, Notes, setNotes) => {
   const filterOut = Notes.filter((Note) => Note.id !== id);

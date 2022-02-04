@@ -9,6 +9,7 @@ import {
 import { DeleteNote } from './Function';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { Link } from 'react-router-dom';
 
 const DisplayNotes = ({ Notes, setNotes }) => {
   return Notes.map(({ id, Note }) => {
@@ -24,35 +25,36 @@ const DisplayNotes = ({ Notes, setNotes }) => {
         }}
       >
         <CardActionArea
-          onClick={(e) => console.log(e)}
           component="div"
           sx={{
             width: 'calc(60%)',
             height: '60px',
           }}
         >
-          <CardContent>
-            <Typography
-              variant="h5"
-              sx={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {Note.title}
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {Note.body}
-            </Typography>
-          </CardContent>
+          <Link to="/ViewNote" state={{ Note: Note }}>
+            <CardContent>
+              <Typography
+                variant="h5"
+                sx={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {Note.title}
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {Note.body}
+              </Typography>
+            </CardContent>
+          </Link>
         </CardActionArea>
 
         <CardActions>
@@ -60,7 +62,9 @@ const DisplayNotes = ({ Notes, setNotes }) => {
             <DeleteIcon />
           </Button>
           <Button>
-            <EditOutlinedIcon />
+            <Link to="/EditNote" state={{ Note: Note }}>
+              <EditOutlinedIcon />
+            </Link>
           </Button>
         </CardActions>
       </Card>

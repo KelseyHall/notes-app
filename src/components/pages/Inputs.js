@@ -1,15 +1,11 @@
-import {
-  Button,
-  TextField,
-  TextareaAutosize,
-  FormControl,
-} from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
 import { addNewNote, EditNote } from '../Function';
 import { useLocation } from 'react-router-dom';
 
-export const AddNoteForm = ({ setNotes }) => {
+export const AddNoteForm = ({ setNotes, handleClose }) => {
   return (
-    <FormControl
+    <Box
+      component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={(e) => addNewNote(e, setNotes)}
     >
@@ -28,15 +24,18 @@ export const AddNoteForm = ({ setNotes }) => {
         variant="filled"
         label="body"
       />
-      <Button type="submit">Add Note</Button>
-    </FormControl>
+      <Button type="submit" onClick={handleClose}>
+        Add Note
+      </Button>
+    </Box>
   );
 };
 export const EditNoteForm = () => {
   const data = useLocation();
   const { Note } = data.state;
   return (
-    <FormControl
+    <Box
+      component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={(e) => EditNote(e)}
     >
@@ -58,6 +57,6 @@ export const EditNoteForm = () => {
         defaultValue={Note.body}
       />
       <Button type="submit">Edit Note</Button>
-    </FormControl>
+    </Box>
   );
 };

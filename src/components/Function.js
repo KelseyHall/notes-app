@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const addNewNote = (e, setNote) => {
+export const addNewNote = (e, setNotes) => {
   e.preventDefault();
   const TitleNote = e.target.elements.addNoteTitleForm.value.trim();
   const BodyNote = e.target.elements.addNoteBodyForm.value.trim();
 
   if (TitleNote.length > 0) {
-    setNote((savedNotes) => [
+    setNotes((savedNotes) => [
       ...savedNotes,
       { id: uuidv4(), Note: { title: TitleNote, body: BodyNote } },
     ]);

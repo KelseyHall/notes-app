@@ -1,4 +1,11 @@
-import { Container } from '@mui/material';
+import React from 'react';
+import {
+  Button,
+  Container,
+  DialogContent,
+  Dialog,
+  DialogTitle,
+} from '@mui/material';
 import { useEffect, useState } from 'react';
 import DisplayNotes from '../DisplayNotesMap';
 
@@ -17,9 +24,24 @@ const Notes = () => {
     localStorage.setItem('SavedNotes', JSON.stringify(Notes));
   }, [Notes]);
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Container>
-      <AddNoteForm setNotes={setNotes} />
+      <Button onClick={handleClickOpen}>Add New</Button>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Add New Note</DialogTitle>
+        <DialogContent>
+          <AddNoteForm setNotes={setNotes} handleClose={handleClose} />
+        </DialogContent>
+      </Dialog>
       <DisplayNotes Notes={Notes} setNotes={setNotes} />
     </Container>
   );

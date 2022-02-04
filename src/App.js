@@ -1,5 +1,6 @@
 import Header from './components/Header';
 import Notes from './components/pages/Notes';
+import Router from './components/pages/Router';
 
 function App() {
   return (
@@ -7,7 +8,8 @@ function App() {
       <header className="App-header">
         <Header />
       </header>
-      <Notes />
+
+      <Router />
     </div>
   );
 }

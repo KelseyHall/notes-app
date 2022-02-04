@@ -8,14 +8,22 @@ import {
   Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/material/Icon';
-const pages = ['home', 'edit'];
+import { Link } from 'react-router-dom';
+// const pages = ['home', 'edit'];
 
 const Header = () => {
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography variant="h1">My Notes</Typography>
+          <Container
+            component={Link}
+            to={'/'}
+            sx={{ textDecoration: 'inherit', color: 'inherit' }}
+          >
+            <Typography variant="h1">My Notes</Typography>
+          </Container>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', med: 'none' } }}>
             <IconButton
               size="large"
@@ -25,11 +33,11 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            {pages.map((page) => (
+            {/*pages.map((page) => (
               <MenuItem key={page}>
                 <Typography textAlign="center">{page}</Typography>
               </MenuItem>
-            ))}
+            ))*/}
           </Box>
         </Toolbar>
       </Container>

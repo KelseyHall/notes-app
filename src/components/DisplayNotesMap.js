@@ -31,40 +31,46 @@ const DisplayNotes = ({ Notes, setNotes }) => {
             height: '60px',
           }}
         >
-          <Link to="/ViewNote" state={{ Note: Note }}>
-            <CardContent>
-              <Typography
-                variant="h5"
-                sx={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {Note.title}
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                {Note.body}
-              </Typography>
-            </CardContent>
-          </Link>
+          <CardContent
+            component={Link}
+            to={'/ViewNote'}
+            state={{ Note: Note }}
+            sx={{ textDecoration: 'inherit', color: 'inherit' }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Note.title}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Note.body}
+            </Typography>
+          </CardContent>
         </CardActionArea>
 
         <CardActions>
           <Button onClick={() => DeleteNote(id, Notes, setNotes)}>
             <DeleteIcon />
           </Button>
-          <Button>
-            <Link to="/EditNote" state={{ Note: Note }}>
-              <EditOutlinedIcon />
-            </Link>
+          <Button
+            component={Link}
+            to={'/EditNote'}
+            state={{ Note: Note }}
+            sx={{ textDecoration: 'inherit', color: 'inherit' }}
+          >
+            <EditOutlinedIcon />
           </Button>
         </CardActions>
       </Card>

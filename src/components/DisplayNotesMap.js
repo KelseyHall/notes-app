@@ -1,8 +1,14 @@
-import { Button, Card, Typography } from '@mui/material';
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  Typography,
+} from '@mui/material';
 import { DeleteNote } from './Function';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { Box } from '@mui/system';
 
 const DisplayNotes = ({ Notes, setNotes }) => {
   return Notes.map(({ id, Note }) => {
@@ -17,42 +23,46 @@ const DisplayNotes = ({ Notes, setNotes }) => {
           justifyContent: 'space-between',
         }}
       >
-        <Box
+        <CardActionArea
+          onClick={(e) => console.log(e)}
           component="div"
           sx={{
             width: 'calc(60%)',
             height: '60px',
           }}
         >
-          <Typography
-            variant="h5"
-            sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {Note.title}
-          </Typography>
-          <Typography
-            variant="body1"
-            sx={{
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {Note.body}
-          </Typography>
-        </Box>
-        <span>
+          <CardContent>
+            <Typography
+              variant="h5"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Note.title}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {Note.body}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+
+        <CardActions>
           <Button onClick={() => DeleteNote(id, Notes, setNotes)}>
             <DeleteIcon />
           </Button>
           <Button>
             <EditOutlinedIcon />
           </Button>
-        </span>
+        </CardActions>
       </Card>
     );
   });

@@ -30,14 +30,14 @@ export const AddNoteForm = ({ setNotes, handleClose }) => {
     </Box>
   );
 };
-export const EditNoteForm = () => {
+export const EditNoteForm = ({ setNotes }) => {
   const data = useLocation();
   const { Note } = data.state;
   return (
     <Box
       component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
-      onSubmit={(e) => EditNote(e)}
+      onSubmit={(e) => EditNote(e, setNotes)}
     >
       <TextField
         id="standard-basic"

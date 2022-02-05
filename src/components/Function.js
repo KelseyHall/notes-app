@@ -16,8 +16,19 @@ export const addNewNote = (e, setNotes) => {
     console.log('error');
   }
 };
-export const EditNote = (e) => {
-  console.log(e);
+export const EditNote = (e, setNotes) => {
+  e.preventDefault();
+  const TitleNote = e.target.elements.addNoteTitleForm.value.trim();
+  const BodyNote = e.target.elements.addNoteBodyForm.value.trim();
+  if (TitleNote.length > 0) {
+    setNotes((savedNotes) => [
+      ...savedNotes,
+      { id: uuidv4(), Note: { title: TitleNote, body: BodyNote } },
+    ]);
+  } else {
+    console.log('error');
+  }
+  console.log(e, setNotes);
 };
 
 export const DeleteNote = (id, Notes, setNotes) => {

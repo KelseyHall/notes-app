@@ -23,10 +23,10 @@ export const ViewNotePage = () => {
     </Container>
   );
 };
-export const EditNotePage = () => {
+export const EditNotePage = ({ setNotes }) => {
   return (
     <Container>
-      <EditNoteForm />
+      <EditNoteForm setNotes={setNotes} />
     </Container>
   );
 };

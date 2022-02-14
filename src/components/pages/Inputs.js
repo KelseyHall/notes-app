@@ -30,14 +30,17 @@ export const AddNoteForm = ({ setNotes, handleClose }) => {
     </Box>
   );
 };
-export const EditNoteForm = ({ setNotes }) => {
+export const EditNoteForm = ({ Notes, setNotes }) => {
   const data = useLocation();
-  const { Note } = data.state;
+  const { NotesData } = data.state;
+
   return (
     <Box
       component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
-      onSubmit={(e) => EditNote(e, setNotes)}
+      onSubmit={(e) => {
+        EditNote(e, NotesData, Notes, setNotes);
+      }}
     >
       <TextField
         id="standard-basic"
@@ -45,7 +48,7 @@ export const EditNoteForm = ({ setNotes }) => {
         variant="filled"
         size="small"
         label="Title"
-        defaultValue={Note.title}
+        defaultValue={NotesData.Note.title}
       />
       <TextField
         multiline
@@ -54,7 +57,7 @@ export const EditNoteForm = ({ setNotes }) => {
         variant="filled"
         size="small"
         label="body"
-        defaultValue={Note.body}
+        defaultValue={NotesData.Note.body}
       />
       <Button type="submit">Edit Note</Button>
     </Box>

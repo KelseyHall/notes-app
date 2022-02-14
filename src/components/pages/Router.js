@@ -22,7 +22,10 @@ const Router = () => {
         element={<NotesApp Notes={Notes} setNotes={setNotes} />}
       />
       <Route path="ViewNote" element={<ViewNotePage />} />
-      <Route path="EditNote" element={<EditNotePage setNotes={setNotes} />} />
+      <Route
+        path="EditNote"
+        element={<EditNotePage Notes={Notes} setNotes={setNotes} />}
+      />
     </Routes>
   );
 };

@@ -13,6 +13,8 @@ import { Link } from 'react-router-dom';
 
 const DisplayNotes = ({ Notes, setNotes }) => {
   return Notes.map(({ id, Note }) => {
+    const NotesData = { id, Note };
+
     return (
       <Card
         variant="outlined"
@@ -34,7 +36,7 @@ const DisplayNotes = ({ Notes, setNotes }) => {
           <CardContent
             component={Link}
             to={'/ViewNote'}
-            state={{ Note: Note }}
+            state={{ NotesData: NotesData }}
             sx={{ textDecoration: 'inherit', color: 'inherit' }}
           >
             <Typography
@@ -67,7 +69,7 @@ const DisplayNotes = ({ Notes, setNotes }) => {
           <Button
             component={Link}
             to={'/EditNote'}
-            state={{ Note: Note }}
+            state={{ NotesData: NotesData }}
             sx={{ textDecoration: 'inherit', color: 'inherit' }}
           >
             <EditOutlinedIcon />

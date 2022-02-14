@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom';
 
 export const ViewNotePage = () => {
   const data = useLocation();
-  const { Note } = data.state;
+  const { NotesData } = data.state;
 
   return (
     <Container>
-      <Typography variant="h2">{Note.title}</Typography>
-      <Typography variant="body1">{Note.body}</Typography>
+      <Typography variant="h2">{NotesData.Note.title}</Typography>
+      <Typography variant="body1">{NotesData.Note.body}</Typography>
       <Button
         component={Link}
         to={'/EditNote'}
-        state={{ Note: Note }}
+        state={{ NotesData: NotesData }}
         sx={{ textDecoration: 'inherit', color: 'inherit' }}
       >
         <EditOutlinedIcon />
@@ -23,10 +23,10 @@ export const ViewNotePage = () => {
     </Container>
   );
 };
-export const EditNotePage = () => {
+export const EditNotePage = ({ Notes, setNotes }) => {
   return (
     <Container>
-      <EditNoteForm />
+      <EditNoteForm Notes={Notes} setNotes={setNotes} />
     </Container>
   );
 };

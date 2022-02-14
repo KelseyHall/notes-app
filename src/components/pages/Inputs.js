@@ -1,15 +1,11 @@
-import {
-  Button,
-  TextField,
-  TextareaAutosize,
-  FormControl,
-} from '@mui/material';
+import { Button, TextField, Box } from '@mui/material';
 import { addNewNote, EditNote } from '../Function';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export const AddNoteForm = ({ setNotes }) => {
+export const AddNoteForm = ({ setNotes, handleClose }) => {
   return (
-    <FormControl
+    <Box
+      component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={(e) => addNewNote(e, setNotes)}
     >
@@ -28,17 +24,25 @@ export const AddNoteForm = ({ setNotes }) => {
         variant="filled"
         label="body"
       />
-      <Button type="submit">Add Note</Button>
-    </FormControl>
+      <Button type="submit" onClick={handleClose}>
+        Add Note
+      </Button>
+    </Box>
   );
 };
-export const EditNoteForm = () => {
+export const EditNoteForm = ({ Notes, setNotes }) => {
   const data = useLocation();
-  const { Note } = data.state;
+  const navigate = useNavigate();
+  const { NotesData } = data.state;
+
   return (
-    <FormControl
+    <Box
+      component="form"
       sx={{ display: 'flex', flexDirection: 'column' }}
-      onSubmit={(e) => EditNote(e)}
+      onSubmit={(e) => {
+        EditNote(e, NotesData, Notes, setNotes);
+        navigate('/', { replace: true });
+      }}
     >
       <TextField
         id="standard-basic"
@@ -46,7 +50,7 @@ export const EditNoteForm = () => {
         variant="filled"
         size="small"
         label="Title"
-        defaultValue={Note.title}
+        defaultValue={NotesData.Note.title}
       />
       <TextField
         multiline
@@ -55,9 +59,9 @@ export const EditNoteForm = () => {
         variant="filled"
         size="small"
         label="body"
-        defaultValue={Note.body}
+        defaultValue={NotesData.Note.body}
       />
       <Button type="submit">Edit Note</Button>
-    </FormControl>
+    </Box>
   );
 };

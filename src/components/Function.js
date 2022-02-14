@@ -1,12 +1,13 @@
 import { v4 as uuidv4 } from 'uuid';
+// import { useNavigate } from 'react-router-dom';
 
-export const addNewNote = (e, setNote) => {
+export const addNewNote = (e, setNotes) => {
   e.preventDefault();
   const TitleNote = e.target.elements.addNoteTitleForm.value.trim();
   const BodyNote = e.target.elements.addNoteBodyForm.value.trim();
 
   if (TitleNote.length > 0) {
-    setNote((savedNotes) => [
+    setNotes((savedNotes) => [
       ...savedNotes,
       { id: uuidv4(), Note: { title: TitleNote, body: BodyNote } },
     ]);
@@ -16,8 +17,24 @@ export const addNewNote = (e, setNote) => {
     console.log('error');
   }
 };
-export const EditNote = (e) => {
-  console.log(e);
+export const EditNote = (e, NotesData, Notes, setNotes) => {
+  e.preventDefault();
+  const TitleNote = e.target.elements.addNoteTitleForm.value.trim();
+  const BodyNote = e.target.elements.addNoteBodyForm.value.trim();
+
+  const editNoteItem = Notes.map((eachNote) => {
+    if (eachNote.id === NotesData.id) {
+      return { ...eachNote, Note: { title: TitleNote, body: BodyNote } };
+    } else {
+      return eachNote;
+    }
+  });
+
+  if (TitleNote.length > 0) {
+    setNotes(editNoteItem);
+  } else {
+    console.log('error');
+  }
 };
 
 export const DeleteNote = (id, Notes, setNotes) => {

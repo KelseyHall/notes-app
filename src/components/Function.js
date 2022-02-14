@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+// import { useNavigate } from 'react-router-dom';
 
 export const addNewNote = (e, setNotes) => {
   e.preventDefault();

@@ -1,6 +1,6 @@
 import { Button, TextField, Box } from '@mui/material';
 import { addNewNote, EditNote } from '../Function';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export const AddNoteForm = ({ setNotes, handleClose }) => {
   return (
@@ -32,6 +32,7 @@ export const AddNoteForm = ({ setNotes, handleClose }) => {
 };
 export const EditNoteForm = ({ Notes, setNotes }) => {
   const data = useLocation();
+  const navigate = useNavigate();
   const { NotesData } = data.state;
 
   return (
@@ -40,6 +41,7 @@ export const EditNoteForm = ({ Notes, setNotes }) => {
       sx={{ display: 'flex', flexDirection: 'column' }}
       onSubmit={(e) => {
         EditNote(e, NotesData, Notes, setNotes);
+        navigate('/', { replace: true });
       }}
     >
       <TextField

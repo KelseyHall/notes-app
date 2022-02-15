@@ -1,6 +1,7 @@
 import {
   AppBar,
   Box,
+  Button,
   Container,
   IconButton,
   MenuItem,
@@ -9,7 +10,14 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/material/Icon';
 import { Link } from 'react-router-dom';
-// const pages = ['home', 'edit'];
+import { auth } from './pages/AuthSignIn';
+
+const signInOrOut = auth ? 'Sign Out' : 'Sign In';
+
+const pages = [
+  { title: 'Dashboard', link: `/` },
+  { title: signInOrOut, link: `` },
+];
 
 const Header = () => {
   return (
@@ -33,11 +41,11 @@ const Header = () => {
             >
               <MenuIcon />
             </IconButton>
-            {/*pages.map((page) => (
-              <MenuItem key={page}>
-                <Typography textAlign="center">{page}</Typography>
+            {pages.map((page) => (
+              <MenuItem key={page.title} component={Link} to={page.link}>
+                {page.title}
               </MenuItem>
-            ))*/}
+            ))}
           </Box>
         </Toolbar>
       </Container>
